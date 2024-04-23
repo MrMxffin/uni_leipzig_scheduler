@@ -16,12 +16,21 @@ def format_schedule(schedule_entries):
                 formatted_schedule += "\n"
             formatted_schedule += f"📆 {entry['date']}:\n"
             prev_date = entry['date']
-        formatted_schedule += f"    📚 Kurs: {entry['course_name']}\n"
-        formatted_schedule += f"        👨‍🏫 Dozent: {entry['lecturer']}\n"
+        formatted_schedule += f"    📚 Kurs: {entry['course_name']} ({entry['course_number']})\n"
+
+        # Check if there are multiple lecturers
+        lecturers = entry['lecturer'].split(';')
+        if len(lecturers) > 1:
+            formatted_schedule += "        👨‍🏫 Dozenten:"
+            for lecturer in lecturers:
+                formatted_schedule += f"\n            -{lecturer.strip()}"
+            formatted_schedule += "\n"
+        else:
+            formatted_schedule += f"        👨‍🏫 Dozent: {entry['lecturer']}\n"
+
         formatted_schedule += f"        ⏰ Zeit: {entry['time']}\n"
         formatted_schedule += f"        🏫 Raum: {entry['room']}\n\n"
     return formatted_schedule
-
 
 
 def _parse_schedule(html):
