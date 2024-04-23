@@ -1,4 +1,5 @@
 # almaweb_client.py
+
 import re
 import requests
 import datetime
@@ -6,6 +7,7 @@ from bs4 import BeautifulSoup
 
 
 def format_schedule(schedule_entries):
+    """Format schedule data for display."""
     formatted_schedule = "📅 Stundenplan für die kommende Woche:\n\n"
     for entry in schedule_entries:
         formatted_schedule += f"📆 {entry['date']}:\n"
@@ -17,17 +19,16 @@ def format_schedule(schedule_entries):
 
 
 def _parse_schedule(html):
+    """Parse HTML to extract schedule data."""
     soup = BeautifulSoup(html, 'html.parser')
     schedule_data = []
-    date = None  # Initialize date variable to store the current date
+    date = None
     rows = soup.find_all('tr')
     for row in rows:
         cols = row.find_all('td')
         if cols:
-            # Check if the first column contains header information
             if 'Kursnr.' in cols[0].text.strip() or 'Veranstaltung' in cols[0].text.strip():
-                continue  # Skip header rows
-            # Check if it's a date row
+                continue
             elif 'tbhead' in cols[0].get('class', []):
                 date = cols[0].text.strip()
             else:
@@ -48,6 +49,7 @@ def _parse_schedule(html):
 
 
 def _extract_session_id(refresh_header):
+    """Extract session ID from HTTP headers."""
     if refresh_header:
         url_match = re.search(r'-N(\d+)', refresh_header)
         if url_match:
@@ -57,8 +59,10 @@ def _extract_session_id(refresh_header):
 
 
 class AlmaWebClient:
+    """Client for accessing AlmaWeb."""
 
-    def __init__(self,username,password):
+    def __init__(self, username, password):
+        """Initialize the AlmaWebClient with username and password."""
         self.base_url = "https://almaweb.uni-leipzig.de"
         self.username = username
         self.password = password
@@ -66,6 +70,7 @@ class AlmaWebClient:
         self.cookies = {}
 
     def login(self):
+        """Perform login to the AlmaWeb system."""
         login_url = f"{self.base_url}/scripts/mgrqispi.dll"
         params = {
             "usrname": self.username,
@@ -84,17 +89,20 @@ class AlmaWebClient:
             response = requests.post(login_url, data=params, verify=False)
             response.raise_for_status()
             self.session_id = _extract_session_id(response.headers['REFRESH'])
-            self.cookies = response.cookies.get_dict()  # Extract cookies from response
+            self.cookies = response.cookies.get_dict()
         except requests.RequestException as e:
             raise RuntimeError(f"Login Error: {e}")
 
     def get_schedule(self):
+        """Get schedule data from AlmaWeb."""
         if not self.session_id:
-            self.login()  # Perform login if session ID is not available
-        schedule_url = f"{self.base_url}/scripts/mgrqispi.dll?APPNAME=CampusNet&PRGNAME=SCHEDULERPRINT&ARGUMENTS=-N{self.session_id},-N000376,-A{datetime.datetime.now().strftime('%d.%m.%Y')},-A,-N1"
+            self.login()
+
+        tomorrow_date_formatted = (datetime.datetime.now() + datetime.timedelta(days=1)).strftime('%d.%m.%Y')
+        schedule_url = f"{self.base_url}/scripts/mgrqispi.dll?APPNAME=CampusNet&PRGNAME=SCHEDULERPRINT&ARGUMENTS=-N{self.session_id},-N000376,-A{tomorrow_date_formatted},-A,-N1"
 
         try:
-            response = requests.get(schedule_url, cookies=self.cookies)  # Send cookies with the request
+            response = requests.get(schedule_url, cookies=self.cookies)
             response.raise_for_status()
             return format_schedule(_parse_schedule(response.content))
         except requests.RequestException as e:

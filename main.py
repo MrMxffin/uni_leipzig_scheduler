@@ -1,8 +1,14 @@
 # main.py
+
 from dotenv import load_dotenv
 from scheduler import start_scheduler
 
-load_dotenv()
+
+def main():
+    """Entry point of the application."""
+    load_dotenv()
+    start_scheduler()
+
 
 if __name__ == "__main__":
-    start_scheduler()
+    main()
