@@ -9,13 +9,19 @@ from bs4 import BeautifulSoup
 def format_schedule(schedule_entries):
     """Format schedule data for display."""
     formatted_schedule = "📅 Stundenplan für die kommende Woche:\n\n"
+    prev_date = None
     for entry in schedule_entries:
-        formatted_schedule += f"📆 {entry['date']}:\n"
-        formatted_schedule += f"- 📚 Kurs: {entry['course_name']}\n"
-        formatted_schedule += f"  👨‍🏫 Dozent: {entry['lecturer']}\n"
-        formatted_schedule += f"  ⏰ Zeit: {entry['time']}\n"
-        formatted_schedule += f"  🏫 Raum: {entry['room']}\n\n"
+        if entry['date'] != prev_date:
+            if prev_date is not None:
+                formatted_schedule += "\n"
+            formatted_schedule += f"📆 {entry['date']}:\n"
+            prev_date = entry['date']
+        formatted_schedule += f"    📚 Kurs: {entry['course_name']}\n"
+        formatted_schedule += f"        👨‍🏫 Dozent: {entry['lecturer']}\n"
+        formatted_schedule += f"        ⏰ Zeit: {entry['time']}\n"
+        formatted_schedule += f"        🏫 Raum: {entry['room']}\n\n"
     return formatted_schedule
+
 
 
 def _parse_schedule(html):
