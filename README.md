@@ -27,22 +27,24 @@ Um den Scheduler zu verwenden, müssen Sie die Konfiguration entsprechend anpass
 ## Konfiguration
 Die Konfiguration erfolgt über Umgebungsvariablen, die in einer .env-Datei bereitgestellt werden. Folgende Variablen müssen konfiguriert werden:
 
-ALMAWEB_USERNAME: Benutzername für den Zugriff auf die AlmaWeb-Plattform.
-ALMAWEB_PASSWORD: Passwort für den Zugriff auf die AlmaWeb-Plattform.
-TELEGRAM_BOT_TOKEN: Token für den Zugriff auf den Telegram-Bot.
-TELEGRAM_CHAT_ID: Chat-ID des Telegram-Chats, an den Benachrichtigungen gesendet werden sollen.
+- ALMAWEB_USERNAME: Benutzername für den Zugriff auf die AlmaWeb-Plattform.
+- ALMAWEB_PASSWORD: Passwort für den Zugriff auf die AlmaWeb-Plattform.
+- TELEGRAM_BOT_TOKEN: Token für den Zugriff auf den Telegram-Bot.
+- TELEGRAM_CHAT_ID: Chat-ID des Telegram-Chats, an den Benachrichtigungen gesendet werden sollen.
 
 ## Installation
 Um das Projekt lokal auszuführen, müssen Sie die folgenden Schritte ausführen:
 
-Klonen Sie das Repository: git clone https://github.com/MrMxffin/uni_leipzig_scheduler.git
-Wechseln Sie in das Verzeichnis: cd uni_leipzig_scheduler
-Installieren Sie die Abhängigkeiten: pip install -r requirements.txt
-Erstellen Sie eine .env-Datei und konfigurieren Sie die erforderlichen Umgebungsvariablen.
-Führen Sie das Hauptskript aus: python main.py
+1. Klonen Sie das Repository: git clone https://github.com/MrMxffin/uni_leipzig_scheduler.git
+2. Wechseln Sie in das Verzeichnis: cd uni_leipzig_scheduler
+3. Installieren Sie die Abhängigkeiten: pip install -r requirements.txt
+4. Erstellen Sie eine .env-Datei und konfigurieren Sie die erforderlichen Umgebungsvariablen.
+5. Führen Sie das Hauptskript aus: python main.py
 
 ## Beitragen
 Beiträge sind immer willkommen! Wenn Sie Verbesserungen vornehmen möchten, öffnen Sie bitte ein Issue oder senden Sie eine Pull-Anfrage.
 
 ## Lizenz
-Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden Sie in der [Lizenzdatei](./LICENSE).
+Dieses Projekt ist unter der [Unlicense](unlicense.org) lizenziert. Das bedeutet, dass es sich um freie und gemeinfreie Software handelt, die in die Public Domain entlassen wurde. Du bist frei, die Software zu kopieren, zu modifizieren, zu veröffentlichen, zu verwenden, zu kompilieren, zu verkaufen oder zu verteilen, sowohl in Quellcode-Form als auch als kompilierte Binärdatei, für jeden Zweck, kommerziell oder nicht kommerziell, und auf jede erdenkliche Weise.
+
+Weitere Informationen findest du in der [Lizenzdatei](./LICENSE).
