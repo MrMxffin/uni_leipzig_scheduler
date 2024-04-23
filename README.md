@@ -45,4 +45,4 @@ Führen Sie das Hauptskript aus: python main.py
 Beiträge sind immer willkommen! Wenn Sie Verbesserungen vornehmen möchten, öffnen Sie bitte ein Issue oder senden Sie eine Pull-Anfrage.
 
 ## Lizenz
-Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden Sie in der [Lizenzdatei](/license).
+Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden Sie in der [Lizenzdatei](./LICENSE).
