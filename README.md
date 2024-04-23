@@ -45,6 +45,6 @@ Um das Projekt lokal auszuführen, müssen Sie die folgenden Schritte ausführen
 Beiträge sind immer willkommen! Wenn Sie Verbesserungen vornehmen möchten, öffnen Sie bitte ein Issue oder senden Sie eine Pull-Anfrage.
 
 ## Lizenz
-Dieses Projekt ist unter der [Unlicense](unlicense.org) lizenziert. Das bedeutet, dass es sich um freie und gemeinfreie Software handelt, die in die Public Domain entlassen wurde. Du bist frei, die Software zu kopieren, zu modifizieren, zu veröffentlichen, zu verwenden, zu kompilieren, zu verkaufen oder zu verteilen, sowohl in Quellcode-Form als auch als kompilierte Binärdatei, für jeden Zweck, kommerziell oder nicht kommerziell, und auf jede erdenkliche Weise.
+Dieses Projekt ist unter der [Unlicense](https://unlicense.org/) lizenziert. Das bedeutet, dass es sich um freie und gemeinfreie Software handelt, die in die Public Domain entlassen wurde. Du bist frei, die Software zu kopieren, zu modifizieren, zu veröffentlichen, zu verwenden, zu kompilieren, zu verkaufen oder zu verteilen, sowohl in Quellcode-Form als auch als kompilierte Binärdatei, für jeden Zweck, kommerziell oder nicht kommerziell, und auf jede erdenkliche Weise.
 
 Weitere Informationen findest du in der [Lizenzdatei](./LICENSE).
