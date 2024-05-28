@@ -42,7 +42,7 @@ def _parse_schedule(html):
     for row in rows:
         cols = row.find_all('td')
         if cols:
-            if 'Kursnr.' in cols[0].text.strip() or 'Veranstaltung' in cols[0].text.strip():
+            if 'Raum' in cols[0].text.strip() or 'Room' in cols[0].text.strip():
                 continue
             elif 'tbhead' in cols[0].get('class', []):
                 date = cols[0].text.strip()
