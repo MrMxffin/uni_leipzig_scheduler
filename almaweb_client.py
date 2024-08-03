@@ -23,7 +23,7 @@ def format_schedule(schedule_entries):
         if len(lecturers) > 1:
             formatted_schedule += "        👨‍🏫 Dozenten:"
             for lecturer in lecturers:
-                formatted_schedule += f"\n            -{lecturer.strip()}"
+                formatted_schedule += f"\n            - {lecturer.strip()}"
             formatted_schedule += "\n"
         else:
             formatted_schedule += f"        👨‍🏫 Dozent: {entry['lecturer']}\n"
@@ -37,16 +37,17 @@ def _parse_schedule(html):
     """Parse HTML to extract schedule data."""
     soup = BeautifulSoup(html, 'html.parser')
     schedule_data = []
-    date = None
     rows = soup.find_all('tr')
+    date = None
+
     for row in rows:
         cols = row.find_all('td')
         if cols:
-            if 'Raum' in cols[0].text.strip() or 'Room' in cols[0].text.strip():
-                continue
-            elif 'tbhead' in cols[0].get('class', []):
+            # Check if the row contains a date
+            if 'tbhead' in cols[0].get('class', []):
                 date = cols[0].text.strip()
-            else:
+            # Check if the row contains schedule data
+            elif 'tbdata' in cols[0].get('class', []):
                 course_number = cols[0].text.strip()
                 course_name = cols[1].text.strip()
                 lecturer = cols[2].text.strip()
